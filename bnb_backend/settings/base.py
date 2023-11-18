@@ -15,8 +15,7 @@ from pathlib import Path
 
 #Server options
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
+
 CORS_ALLOW_ALL_ORIGINS = True
 
 # Initialise environment variables
