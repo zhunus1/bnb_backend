@@ -14,8 +14,6 @@ import environ
 from pathlib import Path
 
 #Server options
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
 CORS_ALLOW_ALL_ORIGINS = True
 
 # Initialise environment variables
