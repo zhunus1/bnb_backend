@@ -18,7 +18,7 @@ class StartUpStage(models.Model):
     )
 
     def __str__(self):
-        return str(self.pk)
+        return str(self.name)
     
     class Meta:
         verbose_name = "Стадия стартапа"
@@ -42,7 +42,7 @@ class Industry(models.Model):
     )
 
     def __str__(self):
-        return str(self.pk)
+        return str(self.name)
     
     class Meta:
         verbose_name = "Индустрия"
@@ -66,7 +66,7 @@ class BussinessModel(models.Model):
     )
 
     def __str__(self):
-        return str(self.pk)
+        return str(self.name)
     
     class Meta:
         verbose_name = "Бизнес модель"
@@ -90,7 +90,7 @@ class Technology(models.Model):
     )
 
     def __str__(self):
-        return str(self.pk)
+        return str(self.name)
     
     class Meta:
         verbose_name = "Технология"
@@ -114,7 +114,7 @@ class SellingModel(models.Model):
     )
 
     def __str__(self):
-        return str(self.pk)
+        return str(self.name)
     
     class Meta:
         verbose_name = "Модель продаж"
@@ -138,7 +138,7 @@ class Country(models.Model):
     )
 
     def __str__(self):
-        return str(self.pk)
+        return str(self.name)
     
     class Meta:
         verbose_name = "Страна"
@@ -162,7 +162,7 @@ class InnovationMethod(models.Model):
     )
 
     def __str__(self):
-        return str(self.pk)
+        return str(self.name)
     
     class Meta:
         verbose_name = "Метод инноваций"
@@ -186,7 +186,7 @@ class InvestRound(models.Model):
     )
 
     def __str__(self):
-        return str(self.pk)
+        return str(self.name)
     
     class Meta:
         verbose_name = "Раунд инвестиций"

@@ -76,6 +76,10 @@ class PilotProject(models.Model):
 
 
 class StartUp(models.Model):
+    is_approved = models.BooleanField(
+        default = False,
+        verbose_name = "Прошло проверку?",
+    )
     user = models.OneToOneField(
         'users.AppUser', 
         on_delete = models.CASCADE,
@@ -216,6 +220,10 @@ class StartUp(models.Model):
 
 
 class Investor(models.Model):
+    is_approved = models.BooleanField(
+        default = False,
+        verbose_name = "Прошло проверку?",
+    )
     user = models.OneToOneField(
         'users.AppUser', 
         on_delete = models.CASCADE,
@@ -318,6 +326,10 @@ class Investor(models.Model):
 
 
 class InvestFund(models.Model):
+    is_approved = models.BooleanField(
+        default = False,
+        verbose_name = "Прошло проверку?",
+    )
     user = models.OneToOneField(
         'users.AppUser', 
         on_delete = models.CASCADE,
@@ -442,6 +454,10 @@ class InvestFund(models.Model):
 
 
 class Corporation(models.Model):
+    is_approved = models.BooleanField(
+        default = False,
+        verbose_name = "Прошло проверку?",
+    )
     user = models.OneToOneField(
         'users.AppUser', 
         on_delete = models.CASCADE,
@@ -554,6 +570,10 @@ class Corporation(models.Model):
 
 
 class Specialist(models.Model):
+    is_approved = models.BooleanField(
+        default = False,
+        verbose_name = "Прошло проверку?",
+    )
     user = models.OneToOneField(
         'users.AppUser', 
         on_delete = models.CASCADE,
