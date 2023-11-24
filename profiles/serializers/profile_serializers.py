@@ -1,14 +1,4 @@
 from rest_framework import serializers
-from modules.serializers import (
-    StartUpStageSerializer,
-    IndustrySerializer,
-    BussinessModelSerializer,
-    TechnologySerializer,
-    SellingModelSerializer,
-    CountrySerializer,
-    InnovationMethodSerializer,
-    InvestRoundSerializer
-)
 from ..models import (
    PilotProject,
    StartUp,
@@ -30,7 +20,7 @@ class PilotProjectSerializer(serializers.ModelSerializer):
         )
 
 
-class StartUpCreateUpdateSerializer(serializers.ModelSerializer):
+class StartUpProfileCreateUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = StartUp
         exclude = (
@@ -48,7 +38,7 @@ class StartUpCreateUpdateSerializer(serializers.ModelSerializer):
         return instance
 
 
-class StartUpDetailSerializer(serializers.ModelSerializer):
+class StartUpProfileDetailSerializer(serializers.ModelSerializer):
     technologies = serializers.ListField()
     industries = serializers.ListField()
     selling_models = serializers.ListField()
@@ -90,7 +80,7 @@ class StartUpDetailSerializer(serializers.ModelSerializer):
         )
 
 
-class InvestorCreateUpdateSerializer(serializers.ModelSerializer):
+class InvestorProfileCreateUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Investor
         exclude = (
@@ -108,7 +98,7 @@ class InvestorCreateUpdateSerializer(serializers.ModelSerializer):
         return instance
 
 
-class InvestorDetailSerializer(serializers.ModelSerializer):
+class InvestorProfileDetailSerializer(serializers.ModelSerializer):
     technologies = serializers.ListField()
     industries = serializers.ListField()
     methods = serializers.ListField()
@@ -138,7 +128,7 @@ class InvestorDetailSerializer(serializers.ModelSerializer):
         )
 
 
-class InvestFundCreateUpdateSerializer(serializers.ModelSerializer):
+class InvestFundProfileCreateUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = InvestFund
         exclude = (
@@ -156,7 +146,7 @@ class InvestFundCreateUpdateSerializer(serializers.ModelSerializer):
         return instance
 
 
-class InvestFundDetailSerializer(serializers.ModelSerializer):
+class InvestFundProfileDetailSerializer(serializers.ModelSerializer):
     technologies = serializers.ListField()
     industries = serializers.ListField()
     methods = serializers.ListField()
@@ -190,7 +180,7 @@ class InvestFundDetailSerializer(serializers.ModelSerializer):
         )
 
 
-class CorporationCreateUpdateSerializer(serializers.ModelSerializer):
+class CorporationProfileCreateUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Corporation
         exclude = (
@@ -208,7 +198,7 @@ class CorporationCreateUpdateSerializer(serializers.ModelSerializer):
         return instance
 
 
-class CorporationDetailSerializer(serializers.ModelSerializer):
+class CorporationProfileDetailSerializer(serializers.ModelSerializer):
     technologies = serializers.ListField()
     industries = serializers.ListField()
     methods = serializers.ListField()
@@ -239,7 +229,7 @@ class CorporationDetailSerializer(serializers.ModelSerializer):
         )
 
 
-class SpecialistCreateUpdateSerializer(serializers.ModelSerializer):
+class SpecialistProfileCreateUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Specialist
         exclude = (
@@ -257,7 +247,7 @@ class SpecialistCreateUpdateSerializer(serializers.ModelSerializer):
         return instance
 
 
-class SpecialistDetailSerializer(serializers.ModelSerializer):
+class SpecialistProfileDetailSerializer(serializers.ModelSerializer):
     technologies = serializers.ListField()
     industries = serializers.ListField()
     user = AppUserSerializer()

@@ -11,16 +11,16 @@ from ..models import (
    Specialist,
 )
 from ..serializers.profile_serializers import (
-    StartUpDetailSerializer,
-    StartUpCreateUpdateSerializer,
-    InvestorCreateUpdateSerializer,
-    InvestorDetailSerializer,
-    InvestFundCreateUpdateSerializer,
-    InvestFundDetailSerializer,
-    CorporationCreateUpdateSerializer,
-    CorporationDetailSerializer,
-    SpecialistCreateUpdateSerializer,
-    SpecialistDetailSerializer
+    StartUpProfileDetailSerializer,
+    StartUpProfileCreateUpdateSerializer,
+    InvestorProfileCreateUpdateSerializer,
+    InvestorProfileDetailSerializer,
+    InvestFundProfileCreateUpdateSerializer,
+    InvestFundProfileDetailSerializer,
+    CorporationProfileCreateUpdateSerializer,
+    CorporationProfileDetailSerializer,
+    SpecialistProfileCreateUpdateSerializer,
+    SpecialistProfileDetailSerializer
 )
 
 # Create your views here.
@@ -30,9 +30,9 @@ class StartUpProfileViewSet(viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         if self.action in ['create', 'update', 'partial_update']:
-            return StartUpCreateUpdateSerializer
+            return StartUpProfileCreateUpdateSerializer
         else:
-            return StartUpDetailSerializer
+            return StartUpProfileDetailSerializer
     
     def perform_create(self, serializer):
         serializer.save(user = self.request.user)
@@ -47,9 +47,9 @@ class InvestorProfileViewSet(viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         if self.action in ['create', 'update', 'partial_update']:
-            return InvestorCreateUpdateSerializer
+            return InvestorProfileCreateUpdateSerializer
         else:
-            return InvestorDetailSerializer
+            return InvestorProfileDetailSerializer
     
     def perform_create(self, serializer):
         serializer.save(user = self.request.user)
@@ -64,9 +64,9 @@ class InvestFundProfileViewSet(viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         if self.action in ['create', 'update', 'partial_update']:
-            return InvestFundCreateUpdateSerializer
+            return InvestFundProfileCreateUpdateSerializer
         else:
-            return InvestFundDetailSerializer
+            return InvestFundProfileDetailSerializer
     
     def perform_create(self, serializer):
         serializer.save(user = self.request.user)
@@ -81,9 +81,9 @@ class CorporationProfileViewSet(viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         if self.action in ['create', 'update', 'partial_update']:
-            return CorporationCreateUpdateSerializer
+            return CorporationProfileCreateUpdateSerializer
         else:
-            return CorporationDetailSerializer
+            return CorporationProfileDetailSerializer
     
     def perform_create(self, serializer):
         serializer.save(user = self.request.user)
@@ -98,9 +98,9 @@ class SpecialistProfileViewSet(viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         if self.action in ['create', 'update', 'partial_update']:
-            return SpecialistCreateUpdateSerializer
+            return SpecialistProfileCreateUpdateSerializer
         else:
-            return SpecialistDetailSerializer
+            return SpecialistProfileDetailSerializer
     
     def perform_create(self, serializer):
         serializer.save(user = self.request.user)

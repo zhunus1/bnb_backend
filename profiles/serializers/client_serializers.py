@@ -1,21 +1,11 @@
 from rest_framework import serializers
 from ..models import (
-   PilotProject,
    StartUp,
    Investor,
    InvestFund,
    Corporation,
    Specialist,
 )
-
-
-class PilotProjectSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PilotProject
-        fields = (
-            'title',
-            'description'
-        )
 
 
 class StartUpListSerializer(serializers.ModelSerializer):
