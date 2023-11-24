@@ -8,7 +8,7 @@ class AppUserSerializer(serializers.ModelSerializer):
             'id', 
             'email', 
             'name', 
-            'phone_number', 
+            'phone', 
         )
 
 class RegistrationSerializer(serializers.ModelSerializer):
@@ -17,7 +17,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
         fields = (
             'name', 
             'email', 
-            'phone_number', 
+            'phone', 
             'password'
         )
         extra_kwargs = {
