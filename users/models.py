@@ -36,8 +36,6 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
     )
     phone = PhoneNumberField(
         verbose_name = _("Номер телефона"),
-        null = True,
-        blank = True,
     )
     is_active = models.BooleanField(
         default = False,
