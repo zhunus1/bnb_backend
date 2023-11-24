@@ -4,7 +4,8 @@ from .models import (
     Investor, 
     InvestFund, 
     Corporation, 
-    Specialist
+    Specialist,
+    PilotProject
 )
 
 # Register your models here.
@@ -12,7 +13,7 @@ from .models import (
 class StartUpAdmin(admin.ModelAdmin):
     list_display = ['id', 'startup_name', 'created', 'updated']
     search_fields = ['startup_name']
-    list_filter = ['is_approved', 'created', 'updated', 'stage', 'industries', 'technologies', 'bussiness_models', 'selling_models', 'countries', 'have_sellings', 'have_pilots', 'active_search']
+    list_filter = ['is_approved', 'created', 'updated', 'startup_stage', 'industries', 'technologies', 'bussiness_models', 'selling_models', 'countries', 'have_sellings', 'have_pilots', 'active_search']
 
 @admin.register(Investor)
 class InvestorAdmin(admin.ModelAdmin):
@@ -37,3 +38,8 @@ class SpecialistAdmin(admin.ModelAdmin):
     list_display = ['id', 'user', 'created', 'updated']
     search_fields = ['user__username', 'user__email']
     list_filter = ['is_approved', 'created', 'updated', 'industries', 'technologies', 'information_source']
+
+@admin.register(PilotProject)
+class PilotProjectAdmin(admin.ModelAdmin):
+    list_display = ['id', 'title', 'description', 'created', 'updated']
+    search_fields = ['title']

@@ -6,19 +6,19 @@ from .models import (
 
 class AppUserAdmin(UserAdmin):
     model = AppUser
-    list_display = ['email', 'name', 'phone_number', 'is_staff', 'is_active']
+    list_display = ['email', 'name', 'phone', 'is_staff', 'is_active']
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Personal Info', {'fields': ('name', 'phone_number')}),
+        ('Personal Info', {'fields': ('name', 'phone')}),
         ('Permissions', {'fields': ('is_staff', 'is_active')}),
     )
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'password1', 'password2', 'name', 'phone_number', 'is_staff', 'is_active')}
+            'fields': ('email', 'password1', 'password2', 'name', 'phone', 'is_staff', 'is_active')}
         ),
     )
-    search_fields = ('email', 'phone_number') 
+    search_fields = ('email', 'phone') 
     ordering = ('email',)
 
 admin.site.register(AppUser, AppUserAdmin)

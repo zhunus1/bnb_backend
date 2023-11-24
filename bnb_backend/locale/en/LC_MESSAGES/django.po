@@ -1,0 +1,358 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-22 06:09+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: modules/models.py:9 modules/models.py:33 modules/models.py:57
+#: modules/models.py:81 modules/models.py:105 modules/models.py:129
+#: modules/models.py:153 modules/models.py:177 profiles/models.py:39
+msgid "Название"
+msgstr "Title"
+
+#: modules/models.py:13 modules/models.py:37 modules/models.py:61
+#: modules/models.py:85 modules/models.py:109 modules/models.py:133
+#: modules/models.py:157 modules/models.py:181 profiles/models.py:54
+#: profiles/models.py:203 profiles/models.py:308 profiles/models.py:436
+#: profiles/models.py:552 profiles/models.py:618
+msgid "Создано"
+msgstr "Created"
+
+#: modules/models.py:18 modules/models.py:42 modules/models.py:66
+#: modules/models.py:90 modules/models.py:114 modules/models.py:138
+#: modules/models.py:162 modules/models.py:186 profiles/models.py:59
+#: profiles/models.py:207 profiles/models.py:313 profiles/models.py:441
+#: profiles/models.py:557 profiles/models.py:623
+msgid "Обновлено"
+msgstr "Updated"
+
+#: modules/models.py:26
+msgid "Стадия стартапа"
+msgstr "Startup stage"
+
+#: modules/models.py:27
+msgid "Стадии стартапа"
+msgstr "Startup stages"
+
+#: modules/models.py:50
+msgid "Индустрия"
+msgstr "Industry"
+
+#: modules/models.py:51 profiles/models.py:135
+msgid "Индустрии"
+msgstr "Industries"
+
+#: modules/models.py:74
+msgid "Бизнес модель"
+msgstr "Bussiness model"
+
+#: modules/models.py:75 profiles/models.py:145
+msgid "Бизнес модели"
+msgstr "Bussiness models"
+
+#: modules/models.py:98
+msgid "Технология"
+msgstr "Technology"
+
+#: modules/models.py:99 profiles/models.py:140
+msgid "Технологии"
+msgstr "Technologies"
+
+#: modules/models.py:122
+msgid "Модель продаж"
+msgstr "Selling model"
+
+#: modules/models.py:123 profiles/models.py:150
+msgid "Модели продаж"
+msgstr "Selling models"
+
+#: modules/models.py:146
+msgid "Страна"
+msgstr "Country"
+
+#: modules/models.py:147 profiles/models.py:155
+msgid "Страны"
+msgstr "Countries"
+
+#: modules/models.py:170
+msgid "Метод инноваций"
+msgstr "Innovation method"
+
+#: modules/models.py:171
+msgid "Методы инноваций"
+msgstr "Innovation methods"
+
+#: modules/models.py:194
+msgid "Раунд инвестиций"
+msgstr "Invest round"
+
+#: modules/models.py:195 profiles/models.py:296 profiles/models.py:424
+#: profiles/models.py:539
+msgid "Раунды инвестиций"
+msgstr "Invest rounds"
+
+#: profiles/models.py:24
+msgid "Друзья"
+msgstr "Friends"
+
+#: profiles/models.py:25
+msgid "Знакомые"
+msgstr "Acquaintances"
+
+#: profiles/models.py:26
+msgid "Семья"
+msgstr "Family"
+
+#: profiles/models.py:27
+msgid "Социальные сети"
+msgstr "Social networks"
+
+#: profiles/models.py:28
+msgid "Реклама в интернете"
+msgstr "Ads"
+
+#: profiles/models.py:29
+msgid "Рассылка через почту"
+msgstr "Newsletter"
+
+#: profiles/models.py:32
+msgid "Да"
+msgstr "Yes"
+
+#: profiles/models.py:33
+msgid "Нет"
+msgstr "No"
+
+#: profiles/models.py:42 profiles/models.py:124 profiles/models.py:250
+#: profiles/models.py:371 profiles/models.py:492
+msgid "Описание"
+msgstr "Description"
+
+#: profiles/models.py:75
+msgid "Пилотный проект"
+msgstr "Pilot project"
+
+#: profiles/models.py:76
+msgid "Пилотные проекты"
+msgstr "Pilot projects"
+
+#: profiles/models.py:82 profiles/models.py:226 profiles/models.py:332
+#: profiles/models.py:460 profiles/models.py:576
+msgid "Прошло проверку?"
+msgstr "Verified?"
+
+#: profiles/models.py:87 profiles/models.py:231 profiles/models.py:337
+#: profiles/models.py:465 profiles/models.py:581
+msgid "Пользователь"
+msgstr "User"
+
+#: profiles/models.py:91 profiles/models.py:341 profiles/models.py:469
+msgid "Публичное название"
+msgstr "Public name"
+
+#: profiles/models.py:94 profiles/models.py:368
+msgid "Веб-сайт"
+msgstr "Website"
+
+#: profiles/models.py:98 profiles/models.py:235 profiles/models.py:345
+msgid "Контактное лицо"
+msgstr "Contact"
+
+#: profiles/models.py:101 profiles/models.py:238 profiles/models.py:348
+#: profiles/models.py:472 users/models.py:31
+msgid "Электронная почта"
+msgstr "E-mail"
+
+#: profiles/models.py:104 profiles/models.py:241 profiles/models.py:351
+#: users/models.py:38
+msgid "Номер телефона"
+msgstr "Phone number"
+
+#: profiles/models.py:108
+msgid "Название организации"
+msgstr "Organization name"
+
+#: profiles/models.py:112 profiles/models.py:359 profiles/models.py:480
+msgid "Идентификационный номер"
+msgstr "Organization ID"
+
+#: profiles/models.py:121
+msgid "Количество сотрудников"
+msgstr "Employees count"
+
+#: profiles/models.py:130
+msgid "Стадия"
+msgstr "Stage"
+
+#: profiles/models.py:160
+msgid "Есть продажи?"
+msgstr "Have sellings?"
+
+#: profiles/models.py:165
+msgid "Есть успешные пилоты?"
+msgstr "Have pilots?"
+
+#: profiles/models.py:170
+msgid "В поиске инвестиций?"
+msgstr "Need investment?"
+
+#: profiles/models.py:176
+msgid "Привлечено"
+msgstr "Invested"
+
+#: profiles/models.py:179 profiles/models.py:326
+msgid "Инвесторы"
+msgstr "Investors"
+
+#: profiles/models.py:186 profiles/models.py:378 profiles/models.py:499
+msgid "Логотип"
+msgstr "Logo"
+
+#: profiles/models.py:191
+msgid "Презентация"
+msgstr "Presentation"
+
+#: profiles/models.py:196 profiles/models.py:255 profiles/models.py:383
+#: profiles/models.py:504 profiles/models.py:611
+msgid "Откуда узнали?"
+msgstr "Information source?"
+
+#: profiles/models.py:200 profiles/models.py:305 profiles/models.py:433
+#: profiles/models.py:548 profiles/models.py:615
+msgid "Количество просмотров"
+msgstr "Views count"
+
+#: profiles/models.py:219
+msgid "Стартап"
+msgstr "Startup"
+
+#: profiles/models.py:220
+msgid "Стартапы"
+msgstr "Startups"
+
+#: profiles/models.py:247 profiles/models.py:365 profiles/models.py:486
+msgid "Страна регистрации"
+msgstr "Registration origin"
+
+#: profiles/models.py:261 profiles/models.py:389
+msgid "Размер средств"
+msgstr "Invest amount"
+
+#: profiles/models.py:266 profiles/models.py:394 profiles/models.py:509
+msgid "Методы работы"
+msgstr "Work methods"
+
+#: profiles/models.py:271 profiles/models.py:399 profiles/models.py:514
+msgid "Релевантные стадии"
+msgstr "Relevant stages"
+
+#: profiles/models.py:276 profiles/models.py:404 profiles/models.py:519
+#: profiles/models.py:594
+msgid "Релевантные технологии"
+msgstr "Relevant technologies"
+
+#: profiles/models.py:281 profiles/models.py:409 profiles/models.py:524
+#: profiles/models.py:589
+msgid "Релевантные индустрии"
+msgstr "Relevant industries"
+
+#: profiles/models.py:286 profiles/models.py:414 profiles/models.py:529
+msgid "Опыт пилотирования?"
+msgstr "Have experience?"
+
+#: profiles/models.py:291 profiles/models.py:419 profiles/models.py:534
+msgid "Инвистирует?"
+msgstr "Is investing?"
+
+#: profiles/models.py:301 profiles/models.py:429 profiles/models.py:544
+msgid "География стартапов"
+msgstr "Startup geography"
+
+#: profiles/models.py:325
+msgid "Инвестор"
+msgstr "Investor"
+
+#: profiles/models.py:355 profiles/models.py:476
+msgid "Наименование организации"
+msgstr "Organization name"
+
+#: profiles/models.py:453
+msgid "Инвестиционный фонд"
+msgstr "Invest fund"
+
+#: profiles/models.py:454
+msgid "Инвестиционные фонды"
+msgstr "Invest funds"
+
+#: profiles/models.py:489
+msgid "Ссылка на веб-сайт"
+msgstr "Website link"
+
+#: profiles/models.py:569
+msgid "Корпорация"
+msgstr "Corporation"
+
+#: profiles/models.py:570
+msgid "Корпорации"
+msgstr "Corporations"
+
+#: profiles/models.py:584
+msgid "Опыт работы"
+msgstr "Work experience"
+
+#: profiles/models.py:601
+msgid "Фото профиля"
+msgstr "Profile image"
+
+#: profiles/models.py:606
+msgid "Резюме"
+msgstr "Resume"
+
+#: profiles/models.py:635
+msgid "Специалист"
+msgstr "Specialist"
+
+#: profiles/models.py:636
+msgid "Специалисты"
+msgstr "Specialists"
+
+#: users/models.py:10
+msgid "The Email field must be set"
+msgstr "The Email field must be set"
+
+#: users/models.py:23
+msgid "Superuser must have is_staff=True."
+msgstr "Superuser must have is_staff=True."
+
+#: users/models.py:25
+msgid "Superuser must have is_superuser=True."
+msgstr "Superuser must have is_superuser=True."
+
+#: users/models.py:35
+msgid "ФИО"
+msgstr "Name and surname"
+
+#: users/models.py:44
+msgid "Подтверждена почта?"
+msgstr "E-mail verified?"
+
+#: users/models.py:48
+msgid "Администратор?"
+msgstr "Admin?"
+
+#: users/models.py:52
+msgid "Дата регистрации"
+msgstr "Registration date"

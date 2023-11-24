@@ -166,7 +166,7 @@ class LoginAPIView(APIView):
                 if user.is_active:
                     # Generate or get an existing token for the user
                     token, created = Token.objects.get_or_create(
-                        user=user
+                        user = user
                     )
 
                     # Optionally, you can include additional user information in the response

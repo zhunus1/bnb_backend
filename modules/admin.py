@@ -8,6 +8,7 @@ from .models import (
     Country,
     InnovationMethod,
     InvestRound,
+    InvestStage
 )
 # Register your models here.
 
@@ -19,3 +20,4 @@ admin.site.register(SellingModel)
 admin.site.register(Country)
 admin.site.register(InnovationMethod)
 admin.site.register(InvestRound)
+admin.site.register(InvestStage)

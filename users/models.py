@@ -1,11 +1,13 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from phonenumber_field.modelfields import PhoneNumberField
+from django.utils.translation import gettext as _
 from django.db import models
 from django.utils import timezone
 
 class AppUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
         if not email:
-            raise ValueError('The Email field must be set')
+            raise ValueError(_('The Email field must be set'))
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
@@ -24,12 +26,31 @@ class AppUserManager(BaseUserManager):
         return self.create_user(email, password, **extra_fields)
 
 class AppUser(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(unique=True)
-    name = models.CharField(max_length=255)
-    phone_number = models.CharField(max_length=12, blank=True, null=True)
-    is_active = models.BooleanField(default=False)
-    is_staff = models.BooleanField(default=False)
-    date_joined = models.DateTimeField(default=timezone.now)
+    email = models.EmailField(
+        unique = True,
+        verbose_name = _("Электронная почта"),
+    )
+    name = models.CharField(
+        max_length = 255,
+        verbose_name = _("ФИО"),
+    )
+    phone = PhoneNumberField(
+        verbose_name = _("Номер телефона"),
+        null = True,
+        blank = True,
+    )
+    is_active = models.BooleanField(
+        default = False,
+        verbose_name = _("Подтверждена почта?"),
+    )
+    is_staff = models.BooleanField(
+        default = False,
+        verbose_name = _("Администратор?"),
+    )
+    date_joined = models.DateTimeField(
+        default = timezone.now,
+        verbose_name = _("Дата регистрации"),
+    )
 
     objects = AppUserManager()
 

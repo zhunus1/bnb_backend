@@ -1,19 +1,21 @@
 from django.db import models
+from django.utils.translation import gettext as _
+
 
 # Create your models here.
 class StartUpStage(models.Model):
     name = models.CharField(
         max_length = 63,
-        verbose_name = "Название",
+        verbose_name = _("Название"),
     )
 
     created = models.DateTimeField(
-        verbose_name = "Создано",
+        verbose_name = _("Создано"),
         auto_now_add = True,
     )
 
     updated = models.DateTimeField(
-        verbose_name = "Обновлено",
+        verbose_name = _("Обновлено"),
         auto_now = True,
     )
 
@@ -21,23 +23,47 @@ class StartUpStage(models.Model):
         return str(self.name)
     
     class Meta:
-        verbose_name = "Стадия стартапа"
-        verbose_name_plural = "Стадии стартапа"
+        verbose_name = _("Стадия стартапа")
+        verbose_name_plural = _("Стадии стартапа")
+
+
+class InvestStage(models.Model):
+    name = models.CharField(
+        max_length = 63,
+        verbose_name = _("Название"),
+    )
+
+    created = models.DateTimeField(
+        verbose_name = _("Создано"),
+        auto_now_add = True,
+    )
+
+    updated = models.DateTimeField(
+        verbose_name = _("Обновлено"),
+        auto_now = True,
+    )
+
+    def __str__(self):
+        return str(self.name)
+    
+    class Meta:
+        verbose_name = _("Стадия инвестирования")
+        verbose_name_plural = _("Стадии инвестирования")
 
 
 class Industry(models.Model):
     name = models.CharField(
         max_length = 63,
-        verbose_name = "Название",
+        verbose_name = _("Название"),
     )
 
     created = models.DateTimeField(
-        verbose_name = "Создано",
+        verbose_name = _("Создано"),
         auto_now_add = True,
     )
 
     updated = models.DateTimeField(
-        verbose_name = "Обновлено",
+        verbose_name = _("Обновлено"),
         auto_now = True,
     )
 
@@ -45,23 +71,23 @@ class Industry(models.Model):
         return str(self.name)
     
     class Meta:
-        verbose_name = "Индустрия"
-        verbose_name_plural = "Индустрии"
+        verbose_name = _("Индустрия")
+        verbose_name_plural = _("Индустрии")
 
 
 class BussinessModel(models.Model):
     name = models.CharField(
         max_length = 63,
-        verbose_name = "Название",
+        verbose_name = _("Название"),
     )
 
     created = models.DateTimeField(
-        verbose_name = "Создано",
+        verbose_name = _("Создано"),
         auto_now_add = True,
     )
 
     updated = models.DateTimeField(
-        verbose_name = "Обновлено",
+        verbose_name = _("Обновлено"),
         auto_now = True,
     )
 
@@ -69,23 +95,23 @@ class BussinessModel(models.Model):
         return str(self.name)
     
     class Meta:
-        verbose_name = "Бизнес модель"
-        verbose_name_plural = "Бизнес модели"
+        verbose_name = _("Бизнес модель")
+        verbose_name_plural = _("Бизнес модели")
 
 
 class Technology(models.Model):
     name = models.CharField(
         max_length = 63,
-        verbose_name = "Название",
+        verbose_name = _("Название"),
     )
 
     created = models.DateTimeField(
-        verbose_name = "Создано",
+        verbose_name = _("Создано"),
         auto_now_add = True,
     )
 
     updated = models.DateTimeField(
-        verbose_name = "Обновлено",
+        verbose_name = _("Обновлено"),
         auto_now = True,
     )
 
@@ -93,23 +119,23 @@ class Technology(models.Model):
         return str(self.name)
     
     class Meta:
-        verbose_name = "Технология"
-        verbose_name_plural = "Технологии"
+        verbose_name =_("Технология")
+        verbose_name_plural = _("Технологии")
 
 
 class SellingModel(models.Model):
     name = models.CharField(
         max_length = 63,
-        verbose_name = "Название",
+        verbose_name = _("Название"),
     )
 
     created = models.DateTimeField(
-        verbose_name = "Создано",
+        verbose_name = _("Создано"),
         auto_now_add = True,
     )
 
     updated = models.DateTimeField(
-        verbose_name = "Обновлено",
+        verbose_name = _("Обновлено"),
         auto_now = True,
     )
 
@@ -117,23 +143,23 @@ class SellingModel(models.Model):
         return str(self.name)
     
     class Meta:
-        verbose_name = "Модель продаж"
-        verbose_name_plural = "Модели продаж"
+        verbose_name = _("Модель продаж")
+        verbose_name_plural = _("Модели продаж")
 
 
 class Country(models.Model):
     name = models.CharField(
         max_length = 63,
-        verbose_name = "Название",
+        verbose_name = _("Название"),
     ) 
 
     created = models.DateTimeField(
-        verbose_name = "Создано",
+        verbose_name = _("Создано"),
         auto_now_add = True,
     )
 
     updated = models.DateTimeField(
-        verbose_name = "Обновлено",
+        verbose_name = _("Обновлено"),
         auto_now = True,
     )
 
@@ -141,23 +167,23 @@ class Country(models.Model):
         return str(self.name)
     
     class Meta:
-        verbose_name = "Страна"
-        verbose_name_plural = "Страны"
+        verbose_name = _("Страна")
+        verbose_name_plural = _("Страны")
 
 
 class InnovationMethod(models.Model):
     name = models.CharField(
         max_length = 63,
-        verbose_name = "Название",
+        verbose_name = _("Название"),
     ) 
 
     created = models.DateTimeField(
-        verbose_name = "Создано",
+        verbose_name = _("Создано"),
         auto_now_add = True,
     )
 
     updated = models.DateTimeField(
-        verbose_name = "Обновлено",
+        verbose_name = _("Обновлено"),
         auto_now = True,
     )
 
@@ -165,23 +191,23 @@ class InnovationMethod(models.Model):
         return str(self.name)
     
     class Meta:
-        verbose_name = "Метод инноваций"
-        verbose_name_plural = "Методы инноваций"
+        verbose_name = _("Метод инноваций")
+        verbose_name_plural = _("Методы инноваций")
 
 
 class InvestRound(models.Model):
     name = models.CharField(
         max_length = 63,
-        verbose_name = "Название",
+        verbose_name = _("Название"),
     ) 
 
     created = models.DateTimeField(
-        verbose_name = "Создано",
+        verbose_name = _("Создано"),
         auto_now_add = True,
     )
 
     updated = models.DateTimeField(
-        verbose_name = "Обновлено",
+        verbose_name = _("Обновлено"),
         auto_now = True,
     )
 
@@ -189,5 +215,5 @@ class InvestRound(models.Model):
         return str(self.name)
     
     class Meta:
-        verbose_name = "Раунд инвестиций"
-        verbose_name_plural = "Раунды инвестиций"
+        verbose_name = _("Раунд инвестиций")
+        verbose_name_plural = _("Раунды инвестиций")

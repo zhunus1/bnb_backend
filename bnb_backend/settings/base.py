@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 import environ
 from pathlib import Path
+from django.utils.translation import gettext as _
 
 #Server options
 CORS_ALLOW_ALL_ORIGINS = True
@@ -26,6 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Application definition
 
 INSTALLED_APPS = [
+    #'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -52,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -105,13 +108,27 @@ AUTH_USER_MODEL = 'users.AppUser'
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
+USE_L10N = True
+
 USE_TZ = True
+
+LANGUAGES = [
+    ('ru', 'Russian'),
+    ('en', 'English'),
+    ('kk', 'Kazakh'),
+]
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale/'),
+]
+
+#MODELTRANSLATION_LANGUAGES = ('en', 'kk')
 
 
 # Static files (CSS, JavaScript, Images)
@@ -154,22 +171,22 @@ CACHES = {
 }
 
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'oauth2_provider.contrib.rest_framework.OAuth2Authentication', 
-        'drf_social_oauth2.authentication.SocialAuthentication',
-    ),
-}
+#REST_FRAMEWORK = {
+#    'DEFAULT_AUTHENTICATION_CLASSES': (
+#        'oauth2_provider.contrib.rest_framework.OAuth2Authentication', 
+#        'drf_social_oauth2.authentication.SocialAuthentication',
+#    ),
+#}
 
 
-AUTHENTICATION_BACKENDS = (
-    # Google  OAuth2
-    'social_core.backends.google.GoogleOAuth2',
-    # drf-social-oauth2
-    'drf_social_oauth2.backends.DjangoOAuth2',
-    # Django
-    'django.contrib.auth.backends.ModelBackend',
-)
+#AUTHENTICATION_BACKENDS = (
+#    # Google  OAuth2
+#    'social_core.backends.google.GoogleOAuth2',
+#    # drf-social-oauth2
+#    'drf_social_oauth2.backends.DjangoOAuth2',
+#    # Django
+#    'django.contrib.auth.backends.ModelBackend',
+#)
 
 # Google configuration
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = env('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
