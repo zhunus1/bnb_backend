@@ -193,27 +193,3 @@ class InnovationMethod(models.Model):
     class Meta:
         verbose_name = _("Метод инноваций")
         verbose_name_plural = _("Методы инноваций")
-
-
-class InvestRound(models.Model):
-    name = models.CharField(
-        max_length = 63,
-        verbose_name = _("Название"),
-    ) 
-
-    created = models.DateTimeField(
-        verbose_name = _("Создано"),
-        auto_now_add = True,
-    )
-
-    updated = models.DateTimeField(
-        verbose_name = _("Обновлено"),
-        auto_now = True,
-    )
-
-    def __str__(self):
-        return str(self.name)
-    
-    class Meta:
-        verbose_name = _("Раунд инвестиций")
-        verbose_name_plural = _("Раунды инвестиций")

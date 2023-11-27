@@ -8,7 +8,7 @@ from .models import (
     SellingModel, 
     Country, 
     InnovationMethod, 
-    InvestRound
+    InvestStage
 )
 from .serializers import (
     StartUpStageSerializer,
@@ -18,7 +18,7 @@ from .serializers import (
     SellingModelSerializer,
     CountrySerializer,
     InnovationMethodSerializer,
-    InvestRoundSerializer
+    InvestStageSerializer
 )
 
 # Create your views here.
@@ -57,6 +57,6 @@ class InnovationMethodViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = InnovationMethodSerializer
 
 
-class InvestRoundViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = InvestRound.objects.all()
-    serializer_class = InvestRoundSerializer
+class InvestStageViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = InvestStage.objects.all()
+    serializer_class = InvestStageSerializer

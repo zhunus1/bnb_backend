@@ -306,7 +306,7 @@ class Investor(models.Model):
         verbose_name = _("Инвистирует?"),
     )
     invest_rounds = models.ManyToManyField(
-        'modules.InvestRound', 
+        'modules.InvestStage', 
         related_name = 'investors',
         verbose_name = _("Раунды инвестиций"),
     )
@@ -432,7 +432,7 @@ class InvestFund(models.Model):
         verbose_name = _("Инвистирует?"),
     )
     invest_rounds = models.ManyToManyField(
-        'modules.InvestRound', 
+        'modules.InvestStage', 
         related_name = 'invest_funds',
         verbose_name = _("Раунды инвестиций"),
     )
@@ -545,7 +545,7 @@ class Corporation(models.Model):
         verbose_name = _("Инвистирует?"),
     )
     invest_rounds = models.ManyToManyField(
-        'modules.InvestRound', 
+        'modules.InvestStage', 
         related_name = 'corporations',
         verbose_name = _("Раунды инвестиций"),
     )

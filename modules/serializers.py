@@ -7,7 +7,6 @@ from .models import (
     SellingModel, 
     Country, 
     InnovationMethod, 
-    InvestRound, 
     InvestStage
 )
 
@@ -78,15 +77,6 @@ class CountrySerializer(serializers.ModelSerializer):
 class InnovationMethodSerializer(serializers.ModelSerializer):
     class Meta:
         model = InnovationMethod
-        fields = (
-            'id', 
-            'name',
-        )
-
-
-class InvestRoundSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = InvestRound
         fields = (
             'id', 
             'name',

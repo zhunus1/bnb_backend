@@ -8,7 +8,7 @@ from .views import (
     SellingModelViewSet,
     CountryViewSet,
     InnovationMethodViewSet,
-    InvestRoundViewSet
+    InvestStageViewSet
 )
 
 router = DefaultRouter()
@@ -19,7 +19,7 @@ router.register(r'technologies', TechnologyViewSet, basename='technologies')
 router.register(r'selling-models', SellingModelViewSet, basename='selling-models')
 router.register(r'countries', CountryViewSet, basename='countries')
 router.register(r'innovation-methods', InnovationMethodViewSet, basename='innovation-methods')
-router.register(r'invest-rounds', InvestRoundViewSet, basename='invest-rounds')
+router.register(r'invest-stages', InvestStageViewSet, basename='invest-stages')
 
 
 urlpatterns = [
