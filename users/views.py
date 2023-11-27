@@ -12,18 +12,28 @@ from rest_framework.permissions import AllowAny
 from rest_framework.authtoken.models import Token
 from django.contrib.auth.hashers import make_password
 from django.shortcuts import get_object_or_404
+from rest_framework.permissions import IsAuthenticated
+from django.utils.translation import gettext as _
+from rest_framework.authentication import TokenAuthentication
+from rest_framework import viewsets
 from users.models import (
     AppUser,
 )
 from .serializers import (
+    AppUserSerializer,
     RegistrationSerializer,
     VerificationSerializer,
     LoginSerializer,
     CodeRequestSerializer,
-    PasswordResetSerializer
+    PasswordResetSerializer,
+    PasswordUpdateSerializer
 )
 
-redis_instance = redis.StrictRedis(host='127.0.0.1', port=6379, db=1)
+redis_instance = redis.StrictRedis(
+    host = '127.0.0.1', 
+    port = 6379, 
+    db = 1
+)
 VERIFICATION_CODE_TIMEOUT = 5 * 60  # 5 minutes in seconds
 
 class CodeRequestAPIView(APIView):
@@ -39,7 +49,7 @@ class CodeRequestAPIView(APIView):
             try:
                 user = AppUser.objects.get(email=email)
             except AppUser.DoesNotExist:
-                return Response({'detail': 'User not found.'}, status=status.HTTP_404_NOT_FOUND)
+                return Response({'detail': _('Пользователь не найден.')}, status = status.HTTP_404_NOT_FOUND)
 
             # Generate a unique verification code
             while True:
@@ -48,17 +58,17 @@ class CodeRequestAPIView(APIView):
                     break
 
             # Set the code in the cache with the user's ID and the specified timeout
-            cache.set(code, user.id, timeout=VERIFICATION_CODE_TIMEOUT)
+            cache.set(code, user.id, timeout = VERIFICATION_CODE_TIMEOUT)
             
             # Send verification code to user's email
             subject = 'Код верификации почты'
-            message = f'Your verification code is: {code}'
+            message = f'Ваш код верификации почты: {code}'
             from_email = 'bnbinfodesk@gmail.com'
             to_email = user.email
 
             try:
                 send_mail(subject, message, from_email, [to_email])
-                return Response({'detail': 'Verification code is sent. Check your email for verification code.'}, status=status.HTTP_201_CREATED)
+                return Response({'detail': _('Код верификации был отправлен. Проверьте вашу почту.')}, status=status.HTTP_201_CREATED)
             except Exception as e:
                 # Handle email sending failure
                 cache.delete(code)  # Remove the code from cache if sending email fails
@@ -75,10 +85,10 @@ class RegistrationAPIView(APIView):
 
             # Check if a user with the same email already exists
             if AppUser.objects.filter(email = email).exists():
-                return Response({'detail': 'User with this email already exists.'}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({'detail': _('Пользователь с данным e-mail уже существует.')}, status = status.HTTP_400_BAD_REQUEST)
 
             user = serializer.save()
-            return Response({'detail': 'User registered successfully.'}, status=status.HTTP_201_CREATED)
+            return Response({'detail': _('Пользователь успешно зарегистрирован.')}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -94,7 +104,7 @@ class PasswordResetConfirmAPIView(APIView):
             user_id = cache.get(code)
 
             if user_id is None:
-                return Response({'detail': 'Invalid or expired reset code.'}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({'detail': _('Код верификации неверен, либо был просрочен.')}, status = status.HTTP_400_BAD_REQUEST)
 
             # Retrieve the user from the database
             user = AppUser.objects.get(id=user_id)
@@ -106,7 +116,7 @@ class PasswordResetConfirmAPIView(APIView):
             # Optionally, remove the reset code from the cache
             cache.delete(code)
 
-            return Response({'detail': 'Password successfully reset.'}, status=status.HTTP_200_OK)
+            return Response({'detail': _('Пароль был успешно сброшен.')}, status = status.HTTP_200_OK)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -124,7 +134,7 @@ class VerificationAPIView(APIView):
             user_id = cache.get(code)
 
             if user_id is None:
-                return Response({'detail': 'Invalid or expired verification code.'}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({'detail': _('Код верификации неверен, либо был просрочен.')}, status = status.HTTP_400_BAD_REQUEST)
 
             # Retrieve the user from the database
             user = AppUser.objects.get(
@@ -132,7 +142,7 @@ class VerificationAPIView(APIView):
             )
 
             if user.is_active:
-                return Response({'detail': 'User is already verified.'}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({'detail': _('Пользователь уже прошел верификацию.')}, status = status.HTTP_400_BAD_REQUEST)
             
             # Mark the user as verified (example: set a flag in the user model)
             user.is_active = True
@@ -141,7 +151,7 @@ class VerificationAPIView(APIView):
             # Optionally, remove the verification code from the cache
             cache.delete(code)
 
-            return Response({'detail': 'User successfully verified.'}, status=status.HTTP_200_OK)
+            return Response({'detail': _('Пользователь успешно прошел верификацию.')}, status = status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -182,5 +192,49 @@ class LoginAPIView(APIView):
                 return Response({'detail': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
 
+class ProfileAPIView(APIView):
+    authentication_classes = [TokenAuthentication] 
+    permission_classes = [IsAuthenticated]
 
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        serializer = AppUserSerializer(user)
+
+        return Response(serializer.data, status = status.HTTP_200_OK)
+
+    def put(self, request, *args, **kwargs):
+        user = request.user
+        serializer = AppUserSerializer(user, data = request.data, partial = True)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'detail': _('Профиль успешно обновлен.')}, status = status.HTTP_200_OK)
+
+        return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+    
+
+class PasswordUpdateAPIView(APIView):
+    authentication_classes = [TokenAuthentication] 
+    permission_classes = [IsAuthenticated]
+
+    def put(self, request, *args, **kwargs):
+        serializer = PasswordUpdateSerializer(data=request.data)
+
+        if serializer.is_valid():
+            user = request.user
+            current_password = serializer.validated_data['current_password']
+            new_password = serializer.validated_data['new_password']
+
+            # Check if the current password is correct
+            if not user.check_password(current_password):
+                return Response({'detail': _('Неверный текущий пароль.')}, status = status.HTTP_400_BAD_REQUEST)
+
+            # Update the password
+            user.set_password(new_password)
+            user.save()
+
+            return Response({'detail': 'Пароль успешно обновлен.'}, status = status.HTTP_200_OK)
+
+        return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)

@@ -1,11 +1,11 @@
 from rest_framework import serializers
 from .models import AppUser
+from django.utils.translation import gettext as _
 
 class AppUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = AppUser
         fields = (
-            'id', 
             'email', 
             'name', 
             'phone', 
@@ -70,3 +70,18 @@ class PasswordResetSerializer(serializers.Serializer):
 
 class CodeRequestSerializer(serializers.Serializer):
     email = serializers.EmailField()
+
+
+class PasswordUpdateSerializer(serializers.Serializer):
+    current_password = serializers.CharField(required = True)
+    new_password = serializers.CharField(required = True)
+    confirm_new_password = serializers.CharField(required = True)
+
+    def validate(self, data):
+        new_password = data.get('new_password')
+        confirm_new_password = data.get('confirm_new_password')
+
+        if new_password != confirm_new_password:
+            raise serializers.ValidationError(_("Пароли не совпадают."))
+
+        return data
