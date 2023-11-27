@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'djmoney',
     'users',
     'profiles',
-    'modules'
+    'modules',
+    'medias'
 ]
 
 MIDDLEWARE = [
