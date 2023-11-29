@@ -21,27 +21,22 @@ from modules.models import (
 class StartUpFilter(django_filters.FilterSet):
     industries = django_filters.ModelMultipleChoiceFilter(
         field_name = 'industries',
-        to_field_name = 'id',
         queryset = Industry.objects.all(),
     )
     technologies = django_filters.ModelMultipleChoiceFilter(
         field_name = 'technologies',
-        to_field_name = 'id',
         queryset = Technology.objects.all(),
     )
     startup_stage = django_filters.ModelMultipleChoiceFilter(
-        field_name = 'startup_stages',
-        to_field_name = 'id',
+        field_name = 'startup_stage',
         queryset = StartUpStage.objects.all(),
     )
     invest_stage = django_filters.ModelMultipleChoiceFilter(
-        field_name = 'invest_stages',
-        to_field_name = 'id',
+        field_name = 'invest_stage',
         queryset = InvestStage.objects.all(),
     )
     selling_models = django_filters.ModelMultipleChoiceFilter(
         field_name = 'selling_models',
-        to_field_name = 'id',
         queryset = SellingModel.objects.all(),
     )
     

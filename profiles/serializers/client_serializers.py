@@ -9,7 +9,7 @@ from ..models import (
 
 
 class StartUpListSerializer(serializers.ModelSerializer):
-    technologies = serializers.ListField()
+    technologies = serializers.SerializerMethodField()
     class Meta:
         model = StartUp
         fields = (
@@ -19,6 +19,9 @@ class StartUpListSerializer(serializers.ModelSerializer):
             'description',
             'technologies',
         )
+        
+    def get_technologies(self, obj):
+        return [tech.name for tech in obj.technologies.all()]
 
 
 class StartUpDetailSerializer(serializers.ModelSerializer):
