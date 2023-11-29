@@ -26,6 +26,14 @@ class AppUserManager(BaseUserManager):
         return self.create_user(email, password, **extra_fields)
 
 class AppUser(AbstractBaseUser, PermissionsMixin):
+    PROFILE_CHOICES = [
+        ('Стартап', _('Стартап')),
+        ('Инвестор', _('Инвестор')),
+        ('Инвестфонд', _('Инвестфонд')),
+        ('Корпорация', _('Корпорация')),
+        ('Специалист', _('Специалист')),
+    ]
+
     email = models.EmailField(
         unique = True,
         verbose_name = _("Электронная почта"),
@@ -36,6 +44,11 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
     )
     phone = PhoneNumberField(
         verbose_name = _("Номер телефона"),
+    )
+    profile_type = models.CharField(
+        max_length = 10,
+        choices = PROFILE_CHOICES,
+        verbose_name =_("Тип профиля"),
     )
     is_active = models.BooleanField(
         default = False,
@@ -57,15 +70,3 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
-
-    def get_profile(self):
-        if hasattr(self, 'startup'):
-            return self.startup
-        elif hasattr(self, 'investor'):
-            return self.investor
-        elif hasattr(self, 'fund'):
-            return self.fund
-        elif hasattr(self, 'corporation'):
-            return self.corporation
-        elif hasattr(self, 'specialist'):
-            return self.specialist

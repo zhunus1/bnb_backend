@@ -6,7 +6,7 @@ from .models import (
 
 class AppUserAdmin(UserAdmin):
     model = AppUser
-    list_display = ['email', 'name', 'phone', 'is_staff', 'is_active']
+    list_display = ['email', 'name', 'phone', 'is_staff', 'is_active', 'profile_type']
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         ('Personal Info', {'fields': ('name', 'phone')}),
@@ -19,7 +19,7 @@ class AppUserAdmin(UserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'password1', 'password2', 'name', 'phone', 'is_staff', 'is_active')}
+            'fields': ('email', 'password1', 'password2', 'name', 'phone', 'is_staff', 'is_active', 'profile_type')}
         ),
     )
     search_fields = ('email', 'phone') 
