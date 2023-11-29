@@ -183,6 +183,7 @@ class LoginAPIView(APIView):
                     user_data = {
                         'id': user.id,
                         'email': user.email,
+                        'profile': user.get_profile().__class__.__name__,
                     }
 
                     return Response({'token': token.key, 'user': user_data}, status=status.HTTP_200_OK)

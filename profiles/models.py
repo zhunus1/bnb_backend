@@ -90,6 +90,7 @@ class StartUp(models.Model):
     user = models.OneToOneField(
         'users.AppUser', 
         on_delete = models.CASCADE,
+        related_name='startup',
         verbose_name = _("Пользователь"),
     )
     startup_name = models.CharField(
@@ -238,6 +239,7 @@ class Investor(models.Model):
     user = models.OneToOneField(
         'users.AppUser', 
         on_delete = models.CASCADE,
+        related_name='investor',
         verbose_name = _("Пользователь"),
     )
     contact_name = models.CharField(
@@ -349,6 +351,7 @@ class InvestFund(models.Model):
     user = models.OneToOneField(
         'users.AppUser', 
         on_delete = models.CASCADE,
+        related_name='fund',
         verbose_name = _("Пользователь"),
     )
     public_name = models.CharField(
@@ -475,6 +478,7 @@ class Corporation(models.Model):
     user = models.OneToOneField(
         'users.AppUser', 
         on_delete = models.CASCADE,
+        related_name='corporation',
         verbose_name = _("Пользователь"),
     )
     public_name = models.CharField(
@@ -589,6 +593,7 @@ class Specialist(models.Model):
     user = models.OneToOneField(
         'users.AppUser', 
         on_delete = models.CASCADE,
+        related_name='specialist',
         verbose_name = _("Пользователь"),
     )
     experience = models.TextField(

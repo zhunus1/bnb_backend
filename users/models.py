@@ -57,3 +57,15 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+
+    def get_profile(self):
+        if hasattr(self, 'startup'):
+            return self.startup
+        elif hasattr(self, 'investor'):
+            return self.investor
+        elif hasattr(self, 'fund'):
+            return self.fund
+        elif hasattr(self, 'corporation'):
+            return self.corporation
+        elif hasattr(self, 'specialist'):
+            return self.specialist

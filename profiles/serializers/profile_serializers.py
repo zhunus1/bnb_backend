@@ -39,9 +39,9 @@ class StartUpProfileCreateUpdateSerializer(serializers.ModelSerializer):
 
 
 class StartUpProfileDetailSerializer(serializers.ModelSerializer):
-    technologies = serializers.ListField()
-    industries = serializers.ListField()
-    selling_models = serializers.ListField()
+    technologies = serializers.SerializerMethodField()
+    industries = serializers.SerializerMethodField()
+    selling_models = serializers.SerializerMethodField()
     startup_stage = serializers.CharField(
         source = 'startup_stage.name',
     )
@@ -78,6 +78,15 @@ class StartUpProfileDetailSerializer(serializers.ModelSerializer):
             'created', 
             'updated'
         )
+    
+    def get_technologies(self, obj):
+        return [tech.name for tech in obj.technologies.all()]
+    
+    def get_industries(self, obj):
+        return [industry.name for industry in obj.industries.all()]
+    
+    def get_selling_models(self, obj):
+        return [model.name for model in obj.selling_models.all()]
 
 
 class InvestorProfileCreateUpdateSerializer(serializers.ModelSerializer):
@@ -99,10 +108,10 @@ class InvestorProfileCreateUpdateSerializer(serializers.ModelSerializer):
 
 
 class InvestorProfileDetailSerializer(serializers.ModelSerializer):
-    technologies = serializers.ListField()
-    industries = serializers.ListField()
-    methods = serializers.ListField()
-    stage = serializers.ListField()
+    technologies = serializers.SerializerMethodField()
+    industries = serializers.SerializerMethodField()
+    methods = serializers.SerializerMethodField()
+    stage = serializers.SerializerMethodField()
     country = serializers.CharField(
         source = 'country.name',
     )
@@ -127,6 +136,18 @@ class InvestorProfileDetailSerializer(serializers.ModelSerializer):
             'updated'
         )
 
+    def get_technologies(self, obj):
+        return [tech.name for tech in obj.technologies.all()]
+    
+    def get_industries(self, obj):
+        return [industry.name for industry in obj.industries.all()]
+    
+    def get_methods(self, obj):
+        return [method.name for method in obj.methods.all()]
+
+    def get_stage(self, obj):
+        return [stage.name for stage in obj.stage.all()]
+
 
 class InvestFundProfileCreateUpdateSerializer(serializers.ModelSerializer):
     class Meta:
@@ -147,10 +168,10 @@ class InvestFundProfileCreateUpdateSerializer(serializers.ModelSerializer):
 
 
 class InvestFundProfileDetailSerializer(serializers.ModelSerializer):
-    technologies = serializers.ListField()
-    industries = serializers.ListField()
-    methods = serializers.ListField()
-    stage = serializers.ListField()
+    technologies = serializers.SerializerMethodField()
+    industries = serializers.SerializerMethodField()
+    methods = serializers.SerializerMethodField()
+    stage = serializers.SerializerMethodField()
     country = serializers.CharField(
         source = 'country.name',
     )
@@ -178,6 +199,18 @@ class InvestFundProfileDetailSerializer(serializers.ModelSerializer):
             'created', 
             'updated'
         )
+    
+    def get_technologies(self, obj):
+        return [tech.name for tech in obj.technologies.all()]
+    
+    def get_industries(self, obj):
+        return [industry.name for industry in obj.industries.all()]
+    
+    def get_methods(self, obj):
+        return [method.name for method in obj.methods.all()]
+
+    def get_stage(self, obj):
+        return [stage.name for stage in obj.stage.all()]
 
 
 class CorporationProfileCreateUpdateSerializer(serializers.ModelSerializer):
@@ -199,10 +232,10 @@ class CorporationProfileCreateUpdateSerializer(serializers.ModelSerializer):
 
 
 class CorporationProfileDetailSerializer(serializers.ModelSerializer):
-    technologies = serializers.ListField()
-    industries = serializers.ListField()
-    methods = serializers.ListField()
-    stage = serializers.ListField()
+    technologies = serializers.SerializerMethodField()
+    industries = serializers.SerializerMethodField()
+    methods = serializers.SerializerMethodField()
+    stage = serializers.SerializerMethodField()
     country = serializers.CharField(
         source = 'country.name',
     )
@@ -227,6 +260,18 @@ class CorporationProfileDetailSerializer(serializers.ModelSerializer):
             'created', 
             'updated'
         )
+    
+    def get_technologies(self, obj):
+        return [tech.name for tech in obj.technologies.all()]
+    
+    def get_industries(self, obj):
+        return [industry.name for industry in obj.industries.all()]
+    
+    def get_methods(self, obj):
+        return [method.name for method in obj.methods.all()]
+
+    def get_stage(self, obj):
+        return [stage.name for stage in obj.stage.all()]
 
 
 class SpecialistProfileCreateUpdateSerializer(serializers.ModelSerializer):
@@ -248,8 +293,8 @@ class SpecialistProfileCreateUpdateSerializer(serializers.ModelSerializer):
 
 
 class SpecialistProfileDetailSerializer(serializers.ModelSerializer):
-    technologies = serializers.ListField()
-    industries = serializers.ListField()
+    technologies = serializers.SerializerMethodField()
+    industries = serializers.SerializerMethodField()
     user = AppUserSerializer()
     class Meta:
         model = Specialist
@@ -267,3 +312,9 @@ class SpecialistProfileDetailSerializer(serializers.ModelSerializer):
             'created', 
             'updated'
         )
+    
+    def get_technologies(self, obj):
+        return [tech.name for tech in obj.technologies.all()]
+    
+    def get_industries(self, obj):
+        return [industry.name for industry in obj.industries.all()]

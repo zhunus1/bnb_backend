@@ -25,15 +25,15 @@ class StartUpListSerializer(serializers.ModelSerializer):
 
 
 class StartUpDetailSerializer(serializers.ModelSerializer):
-    technologies = serializers.ListField()
-    industries = serializers.ListField()
+    technologies = serializers.SerializerMethodField()
+    industries = serializers.SerializerMethodField()
     startup_stage_name = serializers.CharField(
         source = 'startup_stage.name',
     )
     invest_stage_name = serializers.CharField(
         source = 'invest_stage.name',
     )
-    selling_models = serializers.ListField()
+    selling_models = serializers.SerializerMethodField()
     class Meta:
         model = StartUp
         fields = (
@@ -50,6 +50,15 @@ class StartUpDetailSerializer(serializers.ModelSerializer):
             'website',
             'presentation'
         )
+    
+    def get_technologies(self, obj):
+        return [tech.name for tech in obj.technologies.all()]
+    
+    def get_industries(self, obj):
+        return [industry.name for industry in obj.industries.all()]
+    
+    def get_selling_models(self, obj):
+        return [model.name for model in obj.selling_models.all()]
 
 
 class StartUpCreateSerializer(serializers.ModelSerializer):
@@ -82,8 +91,8 @@ class InvestorListSerializer(serializers.ModelSerializer):
 
 
 class InvestorDetailSerializer(serializers.ModelSerializer):
-    technologies = serializers.ListField()
-    industries = serializers.ListField()
+    technologies = serializers.SerializerMethodField()
+    industries = serializers.SerializerMethodField()
     class Meta:
         model = Investor
         fields = (
@@ -96,6 +105,12 @@ class InvestorDetailSerializer(serializers.ModelSerializer):
             'email',
         )
 
+    def get_technologies(self, obj):
+        return [tech.name for tech in obj.technologies.all()]
+    
+    def get_industries(self, obj):
+        return [industry.name for industry in obj.industries.all()]
+    
 
 class InvestFundListSerializer(serializers.ModelSerializer):
     class Meta:
@@ -109,8 +124,8 @@ class InvestFundListSerializer(serializers.ModelSerializer):
 
 
 class InvestFundDetailSerializer(serializers.ModelSerializer):
-    technologies = serializers.ListField()
-    industries = serializers.ListField()
+    technologies = serializers.SerializerMethodField()
+    industries = serializers.SerializerMethodField()
     class Meta:
         model = InvestFund
         fields = (
@@ -123,6 +138,12 @@ class InvestFundDetailSerializer(serializers.ModelSerializer):
             'email',
             'website'
         )
+    
+    def get_technologies(self, obj):
+        return [tech.name for tech in obj.technologies.all()]
+    
+    def get_industries(self, obj):
+        return [industry.name for industry in obj.industries.all()]
 
 
 class CorporationListSerializer(serializers.ModelSerializer):
@@ -137,8 +158,8 @@ class CorporationListSerializer(serializers.ModelSerializer):
 
 
 class CorporationDetailSerializer(serializers.ModelSerializer):
-    technologies = serializers.ListField()
-    industries = serializers.ListField()
+    technologies = serializers.SerializerMethodField()
+    industries = serializers.SerializerMethodField()
     class Meta:
         model = Corporation
         fields = (
@@ -152,13 +173,19 @@ class CorporationDetailSerializer(serializers.ModelSerializer):
             'website'
         )
 
+    def get_technologies(self, obj):
+        return [tech.name for tech in obj.technologies.all()]
+    
+    def get_industries(self, obj):
+        return [industry.name for industry in obj.industries.all()]
+
 
 class SpecialistListSerializer(serializers.ModelSerializer):
     name = serializers.CharField(
         source = 'user.name',
     )
-    technologies = serializers.ListField()
-    industries = serializers.ListField()
+    technologies = serializers.SerializerMethodField()
+    industries = serializers.SerializerMethodField()
     class Meta:
         model = Specialist
         fields = (
@@ -169,13 +196,19 @@ class SpecialistListSerializer(serializers.ModelSerializer):
             'technologies'
         )
 
+    def get_technologies(self, obj):
+        return [tech.name for tech in obj.technologies.all()]
+    
+    def get_industries(self, obj):
+        return [industry.name for industry in obj.industries.all()]
+   
 
 class SpecialistDetailSerializer(serializers.ModelSerializer):
     name = serializers.CharField(
         source = 'user.name',
     )
-    technologies = serializers.ListField()
-    industries = serializers.ListField()
+    technologies = serializers.SerializerMethodField()
+    industries = serializers.SerializerMethodField()
     email = serializers.CharField(
         source = 'user.email',
     )
@@ -192,3 +225,9 @@ class SpecialistDetailSerializer(serializers.ModelSerializer):
             'email',
             'resume'
         )
+    
+    def get_technologies(self, obj):
+        return [tech.name for tech in obj.technologies.all()]
+    
+    def get_industries(self, obj):
+        return [industry.name for industry in obj.industries.all()]
