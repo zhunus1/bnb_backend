@@ -27,11 +27,11 @@ class AppUserManager(BaseUserManager):
 
 class AppUser(AbstractBaseUser, PermissionsMixin):
     PROFILE_CHOICES = [
-        ('StartUp', _('Стартап')),
-        ('Investor', _('Инвестор')),
-        ('InvestFund', _('Инвестфонд')),
-        ('Corporation', _('Корпорация')),
-        ('Specialist', _('Специалист')),
+        ('StartUp', 'StartUp'),
+        ('Investor', 'Investor'),
+        ('InvestFund', 'InvestFund'),
+        ('Corporation', 'Corporation'),
+        ('Specialist', 'Specialist'),
     ]
 
     email = models.EmailField(
