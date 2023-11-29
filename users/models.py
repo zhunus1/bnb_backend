@@ -49,6 +49,7 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
         max_length = 10,
         choices = PROFILE_CHOICES,
         verbose_name =_("Тип профиля"),
+        null = True
     )
     is_active = models.BooleanField(
         default = False,
