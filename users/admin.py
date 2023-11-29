@@ -11,6 +11,10 @@ class AppUserAdmin(UserAdmin):
         (None, {'fields': ('email', 'password')}),
         ('Personal Info', {'fields': ('name', 'phone')}),
         ('Permissions', {'fields': ('is_staff', 'is_active')}),
+        ('Group Permissions', {
+            'classes': ('collapse',),
+            'fields': ('groups', 'user_permissions', )
+        })
     )
     add_fieldsets = (
         (None, {
@@ -20,5 +24,4 @@ class AppUserAdmin(UserAdmin):
     )
     search_fields = ('email', 'phone') 
     ordering = ('email',)
-
 admin.site.register(AppUser, AppUserAdmin)
