@@ -9,7 +9,7 @@ class AppUserAdmin(UserAdmin):
     list_display = ['email', 'name', 'phone', 'is_staff', 'is_active', 'profile_type']
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Personal Info', {'fields': ('name', 'phone')}),
+        ('Personal Info', {'fields': ('name', 'phone', 'profile_type')}),
         ('Permissions', {'fields': ('is_staff', 'is_active')}),
         ('Group Permissions', {
             'classes': ('collapse',),
