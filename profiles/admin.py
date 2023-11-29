@@ -7,8 +7,15 @@ from .models import (
     Specialist,
     PilotProject
 )
+from django.contrib.contenttypes.admin import GenericTabularInline
+
 
 # Register your models here.
+
+class PilotProjectInline(GenericTabularInline):
+    model = PilotProject
+
+
 @admin.register(StartUp)
 class StartUpAdmin(admin.ModelAdmin):
     list_display = ['id', 'startup_name', 'created', 'updated']
@@ -17,18 +24,27 @@ class StartUpAdmin(admin.ModelAdmin):
 
 @admin.register(Investor)
 class InvestorAdmin(admin.ModelAdmin):
+    inlines = [
+        PilotProjectInline,
+    ]
     list_display = ['id', 'contact_name', 'created', 'updated']
     search_fields = ['contact_name']
     list_filter = ['is_approved', 'created', 'updated', 'country', 'methods', 'stage', 'technologies', 'industries', 'have_experience', 'is_investing', 'invest_rounds', 'geography']
 
 @admin.register(InvestFund)
 class InvestFundAdmin(admin.ModelAdmin):
+    inlines = [
+        PilotProjectInline,
+    ]
     list_display = ['id', 'public_name', 'created', 'updated']
     search_fields = ['public_name']
     list_filter = ['is_approved', 'created', 'updated', 'country', 'methods', 'stage', 'technologies', 'industries', 'have_experience', 'is_investing', 'invest_rounds', 'geography']
 
 @admin.register(Corporation)
 class CorporationAdmin(admin.ModelAdmin):
+    inlines = [
+        PilotProjectInline,
+    ]
     list_display = ['id', 'public_name', 'created', 'updated']
     search_fields = ['public_name']
     list_filter = ['is_approved', 'created', 'updated', 'country', 'methods', 'stage', 'technologies', 'industries', 'have_experience', 'is_investing', 'invest_rounds', 'geography']
@@ -43,3 +59,5 @@ class SpecialistAdmin(admin.ModelAdmin):
 class PilotProjectAdmin(admin.ModelAdmin):
     list_display = ['id', 'title', 'description', 'created', 'updated']
     search_fields = ['title']
+
+
