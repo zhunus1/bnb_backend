@@ -27,11 +27,11 @@ class AppUserManager(BaseUserManager):
 
 class AppUser(AbstractBaseUser, PermissionsMixin):
     PROFILE_CHOICES = [
-        ('Стартап', _('Стартап')),
-        ('Инвестор', _('Инвестор')),
-        ('Инвестфонд', _('Инвестфонд')),
-        ('Корпорация', _('Корпорация')),
-        ('Специалист', _('Специалист')),
+        ('StartUp', _('Стартап')),
+        ('Investor', _('Инвестор')),
+        ('InvestFund', _('Инвестфонд')),
+        ('Corporation', _('Корпорация')),
+        ('Specialist', _('Специалист')),
     ]
 
     email = models.EmailField(
@@ -46,7 +46,7 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
         verbose_name = _("Номер телефона"),
     )
     profile_type = models.CharField(
-        max_length = 10,
+        max_length = 11,
         choices = PROFILE_CHOICES,
         verbose_name =_("Тип профиля"),
         null = True, 
