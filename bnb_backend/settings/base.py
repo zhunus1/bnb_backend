@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Application definition
 
 INSTALLED_APPS = [
-    #'modeltranslation',
+    'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -130,7 +130,8 @@ LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale/'),
 ]
 
-#MODELTRANSLATION_LANGUAGES = ('en', 'kk')
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'ru'
+MODELTRANSLATION_PREPOPULATE_LANGUAGE = 'ru'
 
 
 # Static files (CSS, JavaScript, Images)
