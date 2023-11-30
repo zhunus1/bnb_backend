@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from rest_framework import viewsets
+from django.utils.translation import activate
+from modeltranslation.utils import get_language
+from rest_framework.response import Response
 from .models import (
     StartUpStage, 
     Industry, 
@@ -20,43 +23,147 @@ from .serializers import (
     InnovationMethodSerializer,
     InvestStageSerializer
 )
-
+from .translation import (
+    StartUpStageTranslationOptions,
+    IndustryTranslationOptions,
+    BussinessModelTranslationOptions,
+    TechnologyTranslationOptions,
+    SellingModelTranslationOptions,
+    CountryTranslationOptions,
+    InnovationMethodModelTranslationOptions,
+    InvestStageTranslationOptions
+)
 # Create your views here.
 class StartUpStageViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = StartUpStage.objects.all()
     serializer_class = StartUpStageSerializer
+
+    def get_queryset(self):
+        current_language = get_language()        
+        translated_fields = StartUpStageTranslationOptions.fields  # Add more fields as needed
+
+        # Use the activated language to filter the queryset based on translated fields
+        queryset = StartUpStage.objects.filter(
+            **{
+                f"{field}_{''.join(current_language.split('-'))}__isnull": False
+                for field in translated_fields
+            }
+        )
+        return queryset
 
 
 class IndustryViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Industry.objects.all()
     serializer_class = IndustrySerializer
+
+    def get_queryset(self):
+        current_language = get_language()        
+        translated_fields = IndustryTranslationOptions.fields  # Add more fields as needed
+        # Use the activated language to filter the queryset based on translated fields
+        queryset = Industry.objects.filter(
+            **{
+                f"{field}_{''.join(current_language.split('-'))}__isnull": False
+                for field in translated_fields
+            }
+        )
+        return queryset
 
 
 class BussinessModelViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = BussinessModel.objects.all()
     serializer_class = BussinessModelSerializer
+
+    def get_queryset(self):
+        current_language = get_language()        
+        translated_fields = BussinessModelTranslationOptions.fields  # Add more fields as needed
+
+        # Use the activated language to filter the queryset based on translated fields
+        queryset = BussinessModel.objects.filter(
+            **{
+                f"{field}_{''.join(current_language.split('-'))}__isnull": False
+                for field in translated_fields
+            }
+        )
+        return queryset
 
 
 class TechnologyViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Technology.objects.all()
     serializer_class = TechnologySerializer
+
+    def get_queryset(self):
+        current_language = get_language()        
+        translated_fields = TechnologyTranslationOptions.fields  # Add more fields as needed
+
+        # Use the activated language to filter the queryset based on translated fields
+        queryset = Technology.objects.filter(
+            **{
+                f"{field}_{''.join(current_language.split('-'))}__isnull": False
+                for field in translated_fields
+            }
+        )
+        return queryset
 
 
 class SellingModelViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = SellingModel.objects.all()
     serializer_class = SellingModelSerializer
+
+    def get_queryset(self):
+        current_language = get_language()        
+        translated_fields = SellingModelTranslationOptions.fields  # Add more fields as needed
+
+        # Use the activated language to filter the queryset based on translated fields
+        queryset = SellingModel.objects.filter(
+            **{
+                f"{field}_{''.join(current_language.split('-'))}__isnull": False
+                for field in translated_fields
+            }
+        )
+        return queryset
 
 
 class CountryViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Country.objects.all()
     serializer_class = CountrySerializer
+
+    def get_queryset(self):
+        current_language = get_language()        
+        translated_fields = CountryTranslationOptions.fields  # Add more fields as needed
+
+        # Use the activated language to filter the queryset based on translated fields
+        queryset = Country.objects.filter(
+            **{
+                f"{field}_{''.join(current_language.split('-'))}__isnull": False
+                for field in translated_fields
+            }
+        )
+        return queryset
 
 
 class InnovationMethodViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = InnovationMethod.objects.all()
     serializer_class = InnovationMethodSerializer
+
+    def get_queryset(self):
+        current_language = get_language()        
+        translated_fields = InnovationMethodModelTranslationOptions.fields  # Add more fields as needed
+
+        # Use the activated language to filter the queryset based on translated fields
+        queryset = InnovationMethod.objects.filter(
+            **{
+                f"{field}_{''.join(current_language.split('-'))}__isnull": False
+                for field in translated_fields
+            }
+        )
+        return queryset
 
 
 class InvestStageViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = InvestStage.objects.all()
     serializer_class = InvestStageSerializer
+
+    def get_queryset(self):
+        current_language = get_language()        
+        translated_fields = InvestStageTranslationOptions.fields  # Add more fields as needed
+
+        # Use the activated language to filter the queryset based on translated fields
+        queryset = InvestStage.objects.filter(
+            **{
+                f"{field}_{''.join(current_language.split('-'))}__isnull": False
+                for field in translated_fields
+            }
+        )
+        return queryset

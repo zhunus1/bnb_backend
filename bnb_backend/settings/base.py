@@ -131,8 +131,7 @@ LOCALE_PATHS = [
 ]
 
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'ru'
-MODELTRANSLATION_PREPOPULATE_LANGUAGE = 'ru'
-
+MODELTRANSLATION_ENABLE_FALLBACKS = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/

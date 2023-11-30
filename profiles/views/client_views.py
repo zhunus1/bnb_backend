@@ -2,6 +2,7 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter
+from modeltranslation.utils import get_language
 from ..paginations import CustomPageNumberPagination
 from ..models import (
    StartUp,
@@ -31,9 +32,18 @@ from ..filters import (
     SpecialistFilter
 )
 
+from ..translation import (
+    PilotProjectTranslationOptions,
+    StartUpTranslationOptions,
+    InvestorTranslationOptions,
+    InvestFundTranslationOptions,
+    CorporationTranslationOptions,
+    SpecialistTranslationOptions
+)
+
+
 # Create your views here.
 class StartUpViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = StartUp.objects.all()
     filter_backends = [DjangoFilterBackend, SearchFilter]
     filterset_class = StartUpFilter
     search_fields = (
@@ -48,9 +58,21 @@ class StartUpViewSet(viewsets.ReadOnlyModelViewSet):
         else:
             return StartUpDetailSerializer
         
+    def get_queryset(self):
+        current_language = get_language()        
+        translated_fields = StartUpTranslationOptions.fields  # Add more fields as needed
+
+        # Use the activated language to filter the queryset based on translated fields
+        queryset = StartUp.objects.filter(
+            **{
+                f"{field}_{''.join(current_language.split('-'))}__isnull": False
+                for field in translated_fields
+            }
+        )
+        return queryset
+        
 
 class InvestorViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Investor.objects.all()
     filter_backends = [DjangoFilterBackend, SearchFilter]
     filterset_class = InvestorFilter
     search_fields = (
@@ -63,10 +85,22 @@ class InvestorViewSet(viewsets.ReadOnlyModelViewSet):
             return InvestorListSerializer
         else:
             return InvestorDetailSerializer
+    
+    def get_queryset(self):
+        current_language = get_language()        
+        translated_fields = InvestorTranslationOptions.fields  # Add more fields as needed
+
+        # Use the activated language to filter the queryset based on translated fields
+        queryset = Investor.objects.filter(
+            **{
+                f"{field}_{''.join(current_language.split('-'))}__isnull": False
+                for field in translated_fields
+            }
+        )
+        return queryset
 
 
 class InvestFundViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = InvestFund.objects.all()
     filter_backends = [DjangoFilterBackend, SearchFilter]
     filterset_class = InvestFundFilter
     search_fields = (
@@ -81,10 +115,23 @@ class InvestFundViewSet(viewsets.ReadOnlyModelViewSet):
             return InvestFundListSerializer
         else:
             return InvestFundDetailSerializer
+    
+
+    def get_queryset(self):
+        current_language = get_language()        
+        translated_fields = InvestFundTranslationOptions.fields  # Add more fields as needed
+
+        # Use the activated language to filter the queryset based on translated fields
+        queryset = InvestFund.objects.filter(
+            **{
+                f"{field}_{''.join(current_language.split('-'))}__isnull": False
+                for field in translated_fields
+            }
+        )
+        return queryset
 
 
 class CorporationViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Corporation.objects.all()
     filter_backends = [DjangoFilterBackend, SearchFilter]
     filterset_class = CorporationFilter
     search_fields = (
@@ -98,10 +145,22 @@ class CorporationViewSet(viewsets.ReadOnlyModelViewSet):
             return CorporationListSerializer
         else:
             return CorporationDetailSerializer
+    
+    def get_queryset(self):
+        current_language = get_language()        
+        translated_fields = CorporationTranslationOptions.fields  # Add more fields as needed
+
+        # Use the activated language to filter the queryset based on translated fields
+        queryset = Corporation.objects.filter(
+            **{
+                f"{field}_{''.join(current_language.split('-'))}__isnull": False
+                for field in translated_fields
+            }
+        )
+        return queryset
 
 
 class SpecialistViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Specialist.objects.all()
     filter_backends = [DjangoFilterBackend, SearchFilter]
     filterset_class = SpecialistFilter
     search_fields = (
@@ -114,3 +173,16 @@ class SpecialistViewSet(viewsets.ReadOnlyModelViewSet):
             return SpecialistListSerializer
         else:
             return SpecialistDetailSerializer
+    
+    def get_queryset(self):
+        current_language = get_language()        
+        translated_fields = SpecialistTranslationOptions.fields  # Add more fields as needed
+
+        # Use the activated language to filter the queryset based on translated fields
+        queryset = Specialist.objects.filter(
+            **{
+                f"{field}_{''.join(current_language.split('-'))}__isnull": False
+                for field in translated_fields
+            }
+        )
+        return queryset
