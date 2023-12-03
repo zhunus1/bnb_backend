@@ -12,14 +12,19 @@ from ..models import (
 )
 from ..serializers.profile_serializers import (
     StartUpProfileDetailSerializer,
-    StartUpProfileCreateUpdateSerializer,
-    InvestorProfileCreateUpdateSerializer,
+    StartUpProfileUpdateSerializer,
+    StartUpProfileCreateSerializer,
+    InvestorProfileCreateSerializer,
+    InvestorProfileUpdateSerializer,
     InvestorProfileDetailSerializer,
-    InvestFundProfileCreateUpdateSerializer,
+    InvestFundProfileCreateSerializer,
+    InvestFundProfileUpdateSerializer,
     InvestFundProfileDetailSerializer,
-    CorporationProfileCreateUpdateSerializer,
+    CorporationProfileCreateSerializer,
+    CorporationProfileUpdateSerializer,
     CorporationProfileDetailSerializer,
-    SpecialistProfileCreateUpdateSerializer,
+    SpecialistProfileUpdateSerializer,
+    SpecialistProfileCreateSerializer,
     SpecialistProfileDetailSerializer
 )
 
@@ -29,8 +34,10 @@ class StartUpProfileViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_serializer_class(self):
-        if self.action in ['create', 'update', 'partial_update']:
-            return StartUpProfileCreateUpdateSerializer
+        if self.action == 'create':
+            return StartUpProfileCreateSerializer
+        elif self.action in ['update', 'partial_update']:
+            return StartUpProfileUpdateSerializer
         else:
             return StartUpProfileDetailSerializer
     
@@ -46,13 +53,12 @@ class InvestorProfileViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_serializer_class(self):
-        if self.action in ['create', 'update', 'partial_update']:
-            return InvestorProfileCreateUpdateSerializer
+        if self.action == 'create':
+            return InvestorProfileCreateSerializer
+        elif self.action in ['update', 'partial_update']:
+            return InvestorProfileUpdateSerializer
         else:
             return InvestorProfileDetailSerializer
-    
-    def perform_create(self, serializer):
-        serializer.save(user = self.request.user)
 
     def get_queryset(self):
         return Investor.objects.filter(user = self.request.user)
@@ -63,13 +69,12 @@ class InvestFundProfileViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_serializer_class(self):
-        if self.action in ['create', 'update', 'partial_update']:
-            return InvestFundProfileCreateUpdateSerializer
+        if self.action == 'create':
+            return InvestFundProfileCreateSerializer
+        elif self.action in ['update', 'partial_update']:
+            return InvestFundProfileUpdateSerializer
         else:
             return InvestFundProfileDetailSerializer
-    
-    def perform_create(self, serializer):
-        serializer.save(user = self.request.user)
 
     def get_queryset(self):
         return InvestFund.objects.filter(user = self.request.user)
@@ -80,14 +85,13 @@ class CorporationProfileViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_serializer_class(self):
-        if self.action in ['create', 'update', 'partial_update']:
-            return CorporationProfileCreateUpdateSerializer
+        if self.action == 'create':
+            return CorporationProfileCreateSerializer
+        elif self.action in ['update', 'partial_update']:
+            return CorporationProfileUpdateSerializer
         else:
             return CorporationProfileDetailSerializer
     
-    def perform_create(self, serializer):
-        serializer.save(user = self.request.user)
-
     def get_queryset(self):
         return Corporation.objects.filter(user = self.request.user)
     
@@ -97,13 +101,12 @@ class SpecialistProfileViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_serializer_class(self):
-        if self.action in ['create', 'update', 'partial_update']:
-            return SpecialistProfileCreateUpdateSerializer
+        if self.action == 'create':
+            return SpecialistProfileCreateSerializer
+        elif self.action in ['update', 'partial_update']:
+            return SpecialistProfileUpdateSerializer
         else:
             return SpecialistProfileDetailSerializer
-    
-    def perform_create(self, serializer):
-        serializer.save(user = self.request.user)
 
     def get_queryset(self):
         return Specialist.objects.filter(user = self.request.user)

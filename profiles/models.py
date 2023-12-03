@@ -2,7 +2,7 @@ import datetime
 from django.db import models
 from django.utils.translation import gettext as _
 from phonenumber_field.modelfields import PhoneNumberField
-from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.contrib.contenttypes.models import ContentType
 from djmoney.models.fields import MoneyField
 from django.core.validators import (
@@ -49,13 +49,15 @@ class PilotProject(models.Model):
     )
     content_type = models.ForeignKey(
         ContentType, 
-        on_delete = models.CASCADE
+        on_delete = models.CASCADE,
     )
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey(
         "content_type", 
         "object_id"
     )
+    pilot_projects = GenericRelation('PilotProject')
+
     created = models.DateTimeField(
         verbose_name = _("Создано"),
         auto_now_add = True,
@@ -68,6 +70,10 @@ class PilotProject(models.Model):
 
     def __str__(self):
         return str(self.title)
+
+    def set_profile(self, profile_instance):
+        self.content_type = ContentType.objects.get_for_model(profile_instance)
+        self.object_id = profile_instance.id
     
     class Meta:
         indexes = [
@@ -123,6 +129,13 @@ class StartUp(models.Model):
             MinValueValidator(1984), 
             max_value_current_year
         ]
+    )
+    country = models.ForeignKey(
+        'modules.Country', 
+        on_delete = models.CASCADE,
+        related_name = 'country_startups',
+        verbose_name = _("Страна регистрации"),
+        default = None
     )
     employees_count = models.PositiveIntegerField(
         verbose_name = _("Количество сотрудников"),
