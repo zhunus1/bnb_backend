@@ -104,10 +104,6 @@ class StartUpProfileCreateSerializer(serializers.ModelSerializer):
 
 
 class StartUpProfileUpdateSerializer(serializers.ModelSerializer):
-    countries = serializers.PrimaryKeyRelatedField(
-        queryset = Country.objects.all(), 
-        many = True
-    )
     selling_models = serializers.PrimaryKeyRelatedField(
         queryset = SellingModel.objects.all(), 
         many = True
