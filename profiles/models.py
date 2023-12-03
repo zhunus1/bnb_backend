@@ -324,11 +324,13 @@ class Investor(models.Model):
         'modules.InvestStage', 
         related_name = 'investors',
         verbose_name = _("Раунды инвестиций"),
+        blank = True
     )
     geography = models.ManyToManyField(
         'modules.Country', 
         related_name = 'geography_investors',
         verbose_name = _("География стартапов"),
+        blank = True
     )
     views = models.PositiveIntegerField(
         default = 0,
@@ -451,11 +453,13 @@ class InvestFund(models.Model):
         'modules.InvestStage', 
         related_name = 'invest_funds',
         verbose_name = _("Раунды инвестиций"),
+        blank = True
     )
     geography = models.ManyToManyField(
         'modules.Country', 
         related_name = 'geography_invest_funds',
         verbose_name = _("География стартапов"),
+        blank = True
     )
     views = models.PositiveIntegerField(
         default = 0,
@@ -565,11 +569,13 @@ class Corporation(models.Model):
         'modules.InvestStage', 
         related_name = 'corporations',
         verbose_name = _("Раунды инвестиций"),
+        blank = True
     )
     geography = models.ManyToManyField(
         'modules.Country', 
         related_name = 'geography_corporations',
         verbose_name = _("География стартапов"),
+        blank = True
     )
     views = models.PositiveIntegerField(
         default = 0,
