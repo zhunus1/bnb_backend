@@ -161,7 +161,6 @@ class StartUpProfileUpdateSerializer(serializers.ModelSerializer):
         instance.email = validated_data.get('email', instance.email)
         instance.phone = validated_data.get('phone', instance.phone)
 
-        instance.countries.set(validated_data.get('countries', instance.countries.all()))
         instance.selling_models.set(validated_data.get('selling_models', instance.selling_models.all()))
         instance.bussiness_models.set(validated_data.get('bussiness_models', instance.bussiness_models.all()))
         instance.technologies.set(validated_data.get('technologies', instance.technologies.all()))
