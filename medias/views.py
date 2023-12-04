@@ -1,13 +1,16 @@
 from django.shortcuts import render
 from rest_framework import viewsets
+from rest_framework import generics
 from modeltranslation.utils import get_language
 from profiles.paginations import CustomPageNumberPagination
 from .models import (
     Article,
+    SupportTicket,
 )
 from .serializers import (
     ArticleListSerializer,
-    ArticleDetailSerializer
+    ArticleDetailSerializer,
+    SupportTicketSerializer
 )
 
 from .translation import ArticleTranslationOptions
@@ -35,3 +38,8 @@ class ArticleViewSet(viewsets.ReadOnlyModelViewSet):
             }
         )
         return queryset
+    
+
+class SupportTicketCreateView(generics.CreateAPIView):
+    queryset = SupportTicket.objects.all()
+    serializer_class = SupportTicketSerializer

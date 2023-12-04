@@ -2,6 +2,7 @@ from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin
 from .models import (
     Article,
+    SupportTicket,
 )
 
 # Register your models here.    
@@ -18,3 +19,9 @@ class ArticleAdmin(TranslationAdmin):
             'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
         }
 admin.site.register(Article, ArticleAdmin)
+
+
+class SupportTicketAdmin(admin.ModelAdmin):
+    list_display = ['name', 'email', 'comment', 'created', 'updated']
+
+admin.site.register(SupportTicket, SupportTicketAdmin)

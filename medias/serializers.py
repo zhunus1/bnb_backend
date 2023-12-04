@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import (
    Article,
+   SupportTicket,
 )
 
 
@@ -25,4 +26,14 @@ class ArticleDetailSerializer(serializers.ModelSerializer):
             'banner',
             'content',
             'created',
+        )
+
+
+class SupportTicketSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SupportTicket
+        fields = (
+            'name',
+            'email',
+            'comment',
         )

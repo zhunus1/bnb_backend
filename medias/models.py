@@ -35,3 +35,35 @@ class Article(models.Model):
     class Meta:
         verbose_name = _("Статья")
         verbose_name_plural = _("Статьи")
+
+
+class SupportTicket(models.Model):
+    name = models.CharField(
+        max_length = 255, 
+        verbose_name = _("Имя")
+    )
+
+    email = models.EmailField(
+        verbose_name = _("Электронная почта"),
+    )
+
+    comment = models.TextField(
+        verbose_name = _("Комментарий"),
+    )
+
+    created = models.DateTimeField(
+        verbose_name = _("Создано"),
+        auto_now_add = True,
+    )
+
+    updated = models.DateTimeField(
+        verbose_name = _("Обновлено"),
+        auto_now = True,
+    )
+
+    def __str__(self):
+        return self.email
+    
+    class Meta:
+        verbose_name = _("Заявка")
+        verbose_name_plural = _("Заявки")
