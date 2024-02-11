@@ -832,6 +832,7 @@ class SpecialistProfileCreateSerializer(serializers.ModelSerializer):
             'profile_image',
             'resume',
             'information_source',
+            'user',
         )
     
     def create(self, validated_data):
