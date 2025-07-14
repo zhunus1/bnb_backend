@@ -38,13 +38,13 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    path('api/admin/', admin.site.urls),
-    path('api/users/', include('users.urls')), 
-    path('api/modules/', include('modules.urls')),
-    path('api/profiles/', include('profiles.urls')),
-    path('api/articles/', include('medias.urls')),
-    path('api/swagger<format>/', schema_view.without_ui(cache_timeout=0), name='schema-json'),
-    path('api/swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    path('api/redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-    re_path(r'api/^auth/', include('drf_social_oauth2.urls', namespace='drf')),
+    path('backend/admin/', admin.site.urls),
+    path('backend/users/', include('users.urls')), 
+    path('backend/modules/', include('modules.urls')),
+    path('backend/profiles/', include('profiles.urls')),
+    path('backend/articles/', include('medias.urls')),
+    path('backend/swagger<format>/', schema_view.without_ui(cache_timeout=0), name='schema-json'),
+    path('backend/swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('backend/redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+    re_path(r'backend/^auth/', include('drf_social_oauth2.urls', namespace='drf')),
 ]
