@@ -16,6 +16,8 @@ from rest_framework.permissions import IsAuthenticated
 from django.utils.translation import gettext as _
 from rest_framework.authentication import TokenAuthentication
 from rest_framework import viewsets
+from django.conf import settings
+
 from users.models import (
     AppUser,
 )
@@ -29,11 +31,6 @@ from .serializers import (
     PasswordUpdateSerializer
 )
 
-redis_instance = redis.StrictRedis(
-    host = '127.0.0.1', 
-    port = 6379, 
-    db = 1
-)
 VERIFICATION_CODE_TIMEOUT = 5 * 60  # 5 minutes in seconds
 
 class CodeRequestAPIView(APIView):
@@ -63,7 +60,7 @@ class CodeRequestAPIView(APIView):
             # Send verification code to user's email
             subject = 'Код верификации почты'
             message = f'Ваш код верификации почты: {code}'
-            from_email = 'bnbinfodesk@gmail.com'
+            from_email = settings.DEFAULT_FROM_EMAIL
             to_email = user.email
 
             try:
